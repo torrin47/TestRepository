@@ -17,25 +17,36 @@
         overflow: hidden;
         font-family: "Trebuchet MS";
       }
+	  #HomeButton {
+      position: absolute;
+      top: 200px;
+      left: 20px;
+      z-index: 50;
+    }
     </style>
     <script src="http://js.arcgis.com/3.7/"></script>
     <script>
       var map;
 
-      require(["esri/map", "dojo/domReady!"], function(Map) {
+      require(["esri/map", "esri/dijit/HomeButton", "dojo/domReady!"], function(Map, HomeButton) {
         map = new Map("map", {
           basemap: "topo",
           center: [-122.45,37.75], // long, lat
           zoom: 13,
           sliderStyle: "small"
         });
+		var home = new HomeButton({
+        map: map
+      }, "HomeButton");
+      home.startup();
+
       });	
     </script>
   </head>
 
   <body>
     <p>Test Map 2</p>
-	
     <div id="map"></div>
+		<div id="HomeButton"></div>
   </body>
 </html> 
